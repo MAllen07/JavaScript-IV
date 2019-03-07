@@ -15,7 +15,7 @@ Prototype Refactor
 // */
 
 
-class GameObject extends options {
+class GameObject  options {
 this.createdAt = options.createdAt;
 this.dimensions = options.dimensions;
 this.name = options.name;
