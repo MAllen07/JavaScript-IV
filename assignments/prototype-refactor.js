@@ -15,16 +15,13 @@ Prototype Refactor
 // */
 
 
-class GameObject  options {
-this.createdAt = options.createdAt;
-this.dimensions = options.dimensions;
-this.name = options.name;
-}
-
-GameObject.prototype.destroy = function () {
-return `${this.name} was removed from the game.`;
-};
-
+class GameObject   {
+  constructor(options) {
+    this.createdAt = options.createdAt;
+    this.dimensions = options.dimensions;
+  }
+  destroy() {
+    return `Object was removed from the game.`;
 /*
 === CharacterStats ===
 * healthPoints
@@ -33,9 +30,15 @@ return `${this.name} was removed from the game.`;
 * should inherit destroy() from GameObject's prototype
 */
 
-class CharacterStats extends characterStatsOptions {
-GameObject.call(this, characterStatsOptions);
-this.healthPoints = characterStatsOptions.healthPoints;
+class CharacterStats extends GameObject {
+  constructor(characterStatsOptions) {
+    super(characterStatsOptions);
+    this.hp = characterStatsOptions.hp;
+    this.name = characterStatsOptions.name;
+  }
+  takeDamage() {
+    return `${this.name} took damage.`;
+  }
 }
 
 // Sets up inheritance with GameObject
@@ -54,18 +57,18 @@ return `${this.name} took damage.`;
 * should inherit destroy() from GameObject through CharacterStats
 * should inherit takeDamage() from CharacterStats
 */
-class Humanoid extends humanoidOptions {
-CharacterStats.call(this, humanoidOptions);
-this.team = humanoidOptions.team;
-this.weapons = humanoidOptions.weapons;
-this.language = humanoidOptions.language;
+class Humanoid extends CharacterStats {
+  constructor(humanoidOptions) {
+    super(humanoidOptions);
+    this.faction = humanoidOptions.faction;
+    this.weapons = humanoidOptions.weapons;
+    this.language = humanoidOptions.language;
+  }
+  greet() {
+    return `${this.name} offers a greeting in ${this.language}.`;
+  }
 }
 
-Humanoid.prototype = Object.create(CharacterStats.prototype);
-
-Humanoid.prototype.greet = function () {
-return `${this.name} offers a greeting in ${this.language}.`;
-};
 
 
 /*

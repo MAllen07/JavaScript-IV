@@ -28,31 +28,41 @@
 // ```
 
 class Person {
-    constructor(personAttributes) {
-
-    this.name = personAttributes.name;
-    this.age = personAttributes.age;
-    this.location = personAttributes.location;   
-   
-}
- 
-    speak() {
-
-        return `${this.name} says ${this.phrase}`;
+    constructor(props) {
+      this.name = props.name;
+      this.age = props.age;
+      this.location = props.location;
+      this.gender = props.gender;
     }
+    speak() {
+      console.log(`Hello my name is ${this.name}, I am from ${this.location}`);
+    }
+  }
 
 // extends is setting the Child's prototype to the Parent's prototype
 
 
-class newInstructor extends person{
-
-    constructor(personAttributes) {
-
-      super(personAttributes);
+class Instructor extends Person {
+    constructor(props) {
+      super(props);
+      this.specialty = props.specialty;
+      this.favLanguage = props.favLanguage;
+      this.catchPhrase = props.catchPhrase;
     }
-}
+  
+    demo(subject) {
+      console.log(`Today we are learning about ${subject}`);
+    }
+  
+    grade(student, subject) {
+      console.log(`${student.name} receives a perfect score on ${subject}`);
+    }
 
 
+
+
+
+    
 const fred = new Instructor({
     name: 'Fred',
     location: 'Bedrock',
@@ -62,3 +72,11 @@ const fred = new Instructor({
     specialty: 'Front-end',
     catchPhrase: `Don't forget the homies`
   });
+
+  const  = new student({
+   previousBackground:
+   className:
+   favSubjects:
+
+
+});
